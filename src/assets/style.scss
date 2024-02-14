@@ -1,0 +1,128 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #98C0FF;
+}
+
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    height: 100vh;
+
+    .users {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30vh;
+
+        .user {
+            margin: 0 30px;
+            cursor: pointer;
+
+            &__avatar {
+                text-align: center;
+                &-img{
+                    width: 150px;
+                    height: 150px;
+                    border-radius: 40%;
+                }
+                &-img:hover{
+                    box-shadow: 1px 1px 15px 5px #fff;
+                }
+            }
+
+            &__name {
+                margin-top: 10px;
+                text-align: center;
+                font-size: 24px;
+                font-weight: bold;
+                color: #fff3f3;
+            }
+        }
+    }
+
+    .hidden{
+        display: none;
+    }
+
+    .chat{
+        
+        &__nav{
+            background: #323232;
+            border-radius: 5px 5px 0 0;
+        }
+
+        &__user{
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            color: #fff;
+            padding: 30px 20px;
+
+            &-data{
+                padding-left: 10px;
+            }
+        }
+
+        &__window{
+            height: 76.4vh;
+            padding: 1px;
+            background-color: #F2F7FF;
+            background-image: url('../assets/icons/backgroung.png');
+        }
+
+        &__user-message{
+            background: #D0DCFF;
+            max-width: 50%;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 15px 15px 0px 15px;
+            margin-left: auto;
+
+            small{
+                color: #5a5a5a;
+                font-size: 10px;
+            }
+        }
+
+        &__friend-message{
+            background: #C4BFFF;
+            max-width: 50%;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 15px 15px 15px 0;
+            small{
+                color: #5a5a5a;
+                font-size: 10px;
+            }
+        }
+
+        &__form{
+            background: #323232;
+            height: 56px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 0 0 5px 5px;
+
+            &-inp{
+                background: #323232;
+                width: 85%;
+                color: #fff;
+                outline: none;
+                margin: 20px 0 20px 20px;
+                border: none;
+            }
+            button{
+                background: #323232;
+                border: none;
+                cursor: pointer;
+                margin-right: 20px;
+                margin-top: 5px;
+            }
+        }
+    }
+}
