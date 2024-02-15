@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
-import aleksandr from '../assets/avatars/aleksandr.svg';
-import andy from '../assets/avatars/andy.svg';
+import jigglypuff from '../assets/avatars/jigglypuf.svg';
+import meowth from '../assets/avatars/meowth.svg';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
 
@@ -10,6 +10,20 @@ export default function ContextProvider({children}) {
     const [selectedUser, setSelectedUser] = useState({});
     const [message, setMessage] = useState('');
     const [displayMessages, setDisplayMessages] = useState([]);
+    const [sendPic, setSendPic] = useState(false);
+
+    let users = [
+        {
+            id: 1,
+            name: 'Jigglypuf',
+            avatar: jigglypuff,
+        },
+        {
+            id: 2,
+            name: 'Meowth',
+            avatar: meowth,
+        },
+    ];
 
     async function getMessageFromFirestore() {
         const getMessages = await getDocs(collection(db, 'messages'));
@@ -32,22 +46,10 @@ export default function ContextProvider({children}) {
         setDisplayMessages(sortedMessages);
     }
     
-    let users = [
-        {
-            id: 1,
-            name: 'Aleksandr',
-            avatar: aleksandr,
-        },
-        {
-            id: 2,
-            name: 'Jason',
-            avatar: andy,
-        },
-    ];
 
 
     return (
-        <Context.Provider value={{ users, selectedUser, setSelectedUser, message, setMessage, getMessageFromFirestore, displayMessages, db }}>
+        <Context.Provider value={{ users, selectedUser, setSelectedUser, message, setMessage, getMessageFromFirestore, displayMessages, db, sendPic, setSendPic }}>
             {children}
         </Context.Provider>
     )

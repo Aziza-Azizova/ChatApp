@@ -3,11 +3,12 @@ import { addDoc, collection } from 'firebase/firestore';
 import sendIcon from '../assets/icons/sendIcon.svg';
 import cameraIcon from '../assets/icons/camera.svg';
 import { Context } from '../context/Context';
+import { db } from '../firebase';
 
-export default function Chat({ user }) {
+export default function Chat({ user, friend }) {
     const [typing, setTyping] = useState(false);
 
-    const { selectedUser, message, setMessage, getMessageFromFirestore, displayMessages, db } = useContext(Context);
+    const { selectedUser, message, setMessage, getMessageFromFirestore, displayMessages, sendPic, setSendPic } = useContext(Context);
     const ref = collection(db, 'messages');
 
     useEffect(() => {
@@ -25,7 +26,9 @@ export default function Chat({ user }) {
         }
 
         try {
-            addDoc(ref, data)
+            if(data.message !== ''){
+                addDoc(ref, data)
+            }
         } catch (e) {
             console.log(e);
         }
@@ -44,19 +47,21 @@ export default function Chat({ user }) {
         <div className='chat'>
             <div className="chat__nav">
                 <div className="chat__user">
-                    <img src={user.avatar} alt="avatar" />
+                    <div className="chat__user-img">
+                        <img src={friend.avatar} alt="avatar" className='chat__user-svg' />
+                    </div>
                     <div className="chat__user-data">
-                        <p>{user.name}</p>
-                        <span>{ typing && message.length > 1 ? 'typing...' : 'online'}</span>
+                        <p>{friend.name}</p>
+                        <span>{typing && message.length > 1 ? 'typing...' : 'online'}</span>
                     </div>
                 </div>
             </div>
             <div className="chat__window">
                 {displayMessages.map((message, i) => (
-                    selectedUser.id === message.userId ?
-                        <div key={i} className="chat__user-message"><p>{message.message}</p><small>{message.date}</small></div>
+                    selectedUser.id !== message.userId ?
+                        <div key={i} className="chat__friend-message"><small>{message.username}</small><p>{message.message}</p><small>{message.date}</small></div>
                         :
-                        <div key={i} className="chat__friend-message"><p>{message.message}</p><small>{message.date}</small></div>
+                        <div key={i} className="chat__user-message"><small>{message.username}</small><p>{message.message}</p><small>{message.date}</small></div>
                 ))}
             </div>
             <form className="chat__form" onSubmit={handleSave}>
@@ -66,7 +71,7 @@ export default function Chat({ user }) {
                         typing && message.length > 1 ?
                             <img src={sendIcon} alt="Send Icon" />
                             :
-                            <img src={cameraIcon} alt="Picture send Icon" />
+                            <img src={cameraIcon} alt="Picture send Icon" onClick={() => setSendPic(!sendPic)}/>
                     }
                 </button>
             </form>

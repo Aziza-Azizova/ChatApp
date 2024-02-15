@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     box-sizing: border-box;
 }
@@ -12,11 +12,18 @@ body {
     margin: 0 auto;
     height: 100vh;
 
+    .title {
+        text-align: center;
+        margin-top: 20vh;
+        text-transform: uppercase;
+        color: #fff;
+    }
+
     .users {
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-top: 30vh;
+        margin-top: 10vh;
 
         .user {
             margin: 0 30px;
@@ -24,12 +31,13 @@ body {
 
             &__avatar {
                 text-align: center;
-                &-img{
-                    width: 150px;
-                    height: 150px;
-                    border-radius: 40%;
+
+                &-img {
+                    border-radius: 10%;
+                    padding: 5px;
                 }
-                &-img:hover{
+
+                &-img:hover {
                     box-shadow: 1px 1px 15px 5px #fff;
                 }
             }
@@ -44,37 +52,43 @@ body {
         }
     }
 
-    .hidden{
+    .hidden {
         display: none;
     }
 
-    .chat{
-        
-        &__nav{
+    .chat {
+
+        &__nav {
             background: #323232;
             border-radius: 5px 5px 0 0;
         }
 
-        &__user{
+        &__user {
             display: flex;
             justify-content: start;
             align-items: center;
             color: #fff;
-            padding: 30px 20px;
+            max-width: 120px;
+            padding: 18px 20px;
 
-            &-data{
+            &-svg {
+                max-height: 70px;
+                border-radius: 50%;
+            }
+
+            &-data {
                 padding-left: 10px;
             }
         }
 
-        &__window{
+        &__window {
             height: 76.4vh;
             padding: 1px;
             background-color: #F2F7FF;
             background-image: url('../assets/icons/backgroung.png');
         }
 
-        &__user-message{
+        &__user-message {
             background: #D0DCFF;
             max-width: 50%;
             padding: 10px;
@@ -82,25 +96,26 @@ body {
             border-radius: 15px 15px 0px 15px;
             margin-left: auto;
 
-            small{
+            small {
                 color: #5a5a5a;
                 font-size: 10px;
             }
         }
 
-        &__friend-message{
+        &__friend-message {
             background: #C4BFFF;
             max-width: 50%;
             padding: 10px;
             margin: 10px;
             border-radius: 15px 15px 15px 0;
-            small{
+
+            small {
                 color: #5a5a5a;
                 font-size: 10px;
             }
         }
 
-        &__form{
+        &__form {
             background: #323232;
             height: 56px;
             display: flex;
@@ -108,7 +123,7 @@ body {
             align-items: center;
             border-radius: 0 0 5px 5px;
 
-            &-inp{
+            &-inp {
                 background: #323232;
                 width: 85%;
                 color: #fff;
@@ -116,7 +131,8 @@ body {
                 margin: 20px 0 20px 20px;
                 border: none;
             }
-            button{
+
+            button {
                 background: #323232;
                 border: none;
                 cursor: pointer;
@@ -124,5 +140,86 @@ body {
                 margin-top: 5px;
             }
         }
+
+
+
     }
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #000000bb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__window {
+        display: flex;
+        flex-direction: column;
+        height: 188px;
+        width: 312px;
+        border-radius: 28px;
+        padding: 24px;
+        background: #F2F7FF;
+
+        &-title {
+            font-weight: 400;
+            font-size: 24px;
+            line-height: 32px;
+            color: #1C1B1F;
+        }
+    }
+
+    input {
+        background: #E7E0EC;
+        margin-top: 16px;
+        min-height: 40px;
+        padding: 0 16px;
+        outline: none;
+        border: none;
+        border-bottom: 1px solid #000000ee;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    &__buttons {
+        display: flex;
+        margin-top: 24px;
+        margin-left: auto;
+        column-gap: 8px;
+
+        button {
+            padding: 10px 12px;
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 20px;
+            text-align: center;
+        }
+
+        &-cancel {
+            color: #CF1B1B;
+            border: none;
+            border-radius: 5px;
+            background: #F2F7FF;
+
+        }
+
+        &-send {
+            color: #6750A4;
+            border: none;
+            border-radius: 5px;
+            background: #F2F7FF;
+
+        }
+    }
+}
+
+.hidden {
+    display: none;
 }
